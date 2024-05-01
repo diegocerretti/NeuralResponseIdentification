@@ -231,6 +231,21 @@ def get_equation(final_features, model, sinusoidal=False):
 # PLOTTING FUNCTIONS ###################
 ########################################
 
+def plot_data(dfs):
+    for i in range(5):
+        data = dfs[i]
+        print(f"Neuron {i+1}, Number of Samples: {data.shape[0]}")
+
+        fig, axes = plt.subplots(1, 3, figsize=(15, 5), sharey=True)
+        fig.suptitle(f'Neuron {i+1} Spike Count per Variable', fontsize=10)
+
+        for j, col in enumerate(["orientation", "phase", "spatial_frequency"]):
+            axes[j].scatter(data[col], data["spike_count"])
+            axes[j].set_xlabel(col)
+            axes[j].grid(True)
+        plt.show()
+
+
 def _plot_residuals(model):
     """
     Plot residuals of the linear regression model
