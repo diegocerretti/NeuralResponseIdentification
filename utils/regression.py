@@ -232,6 +232,12 @@ def get_equation(final_features, model, sinusoidal=False):
 ########################################
 
 def plot_data(dfs):
+    """
+    Plots spike count per each variable, for each neuron in dfs
+
+    Args:
+        dfs (dict): containts all pandas.core.frame.DataFrame objects for each neuron
+    """
     for i in range(5):
         data = dfs[i]
         print(f"Neuron {i+1}, Number of Samples: {data.shape[0]}")
@@ -335,9 +341,9 @@ def plot_regression_1D(df, model, var_to_plot, var_to_keep, order = 1, size = 0.
     fig, ax = plt.subplots(figsize=(7, 5))
 
     if var_to_plot == 'spatial_frequency':
-        x = np.linspace(min(df[var_to_plot]) - 0.01, max(df[var_to_plot]) + 0.01, 10)
+        x = np.linspace(min(df[var_to_plot]) - 0.01, max(df[var_to_plot]) + 0.01, 50)
     else:
-        x = np.linspace(min(df[var_to_plot]) - 0.1, max(df[var_to_plot]) + 0.1, 10)
+        x = np.linspace(min(df[var_to_plot]) - 0.1, max(df[var_to_plot]) + 0.1, 50)
 
     y = []
     iv_l = []
@@ -385,9 +391,9 @@ def plot_regression_1D_all(df, model, var_to_keep, order = 1, size = 0.3, sinuso
     count = 0
     for var_to_plot in ['orientation', 'spatial_frequency', 'phase']:
         if var_to_plot == 'spatial_frequency':
-            x = np.linspace(min(df[var_to_plot]) - 0.01, max(df[var_to_plot]) + 0.01, 10)
+            x = np.linspace(min(df[var_to_plot]) - 0.01, max(df[var_to_plot]) + 0.01, 50)
         else:
-            x = np.linspace(min(df[var_to_plot]) - 0.1, max(df[var_to_plot]) + 0.1, 10)
+            x = np.linspace(min(df[var_to_plot]) - 0.1, max(df[var_to_plot]) + 0.1, 50)
 
         y = []
         iv_l = []
@@ -442,4 +448,52 @@ def summary(model, final_features, X_test, y_test, sinusoidal = False):
     get_result(model, X_test[:, final_features], y_test)
     _plot_residuals(model)
     print(get_equation(final_features, model, sinusoidal))
+    
+def plot_stats_neurons(adjr2_neuron1, adjr2_neuron2, adjr2_neuron3, adjr2_neuron4, adjr2_neuron5,
+                       testloss_neuron1, testloss_neuron2, testloss_neuron3, testloss_neuron4, testloss_neuron5,
+                       title, units):
+    """
+    Plots adjusted r2 and test rmse across models for each neuron in a separate plot
+
+    Args:
+        adjr2_neuron1 (list): _description_
+        adjr2_neuron2 (list): _description_
+        adjr2_neuron3 (list): _description_
+        adjr2_neuron4 (list): _description_
+        adjr2_neuron5 (list): _description_
+        testloss_neuron1 (list): _description_
+        testloss_neuron2 (list): _description_
+        testloss_neuron3 (list): _description_
+        testloss_neuron4 (list): _description_
+        testloss_neuron5 (list): _description_
+    """
+    
+    functions = ["linear", "quadratic", "sinusoidal", "combined"]
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(5, 9), sharex = True)
+    ax1.plot(adjr2_neuron1, marker='o', color='r', label=units[0]) # neuron 1
+    ax1.plot(adjr2_neuron2, marker='s', color='g', label=units[1]) # neuron 2
+    ax1.plot(adjr2_neuron3, marker='^', color='b', label=units[2]) # neuron 3
+    ax1.plot(adjr2_neuron4, marker='p', color='c', label=units[3]) # neuron 4
+    ax1.plot(adjr2_neuron5, marker='v', color='m', label=units[4]) # neuron 5
+    ax1.set_ylabel('Adjusted R Squared')
+    ax1.set_ylim(0, 1)
+    ax1.set_xticks(range(len(functions)))
+    ax1.set_xticklabels(functions)
+    ax1.legend(loc = "best")
+    ax1.grid(linestyle='--')
+    plt.tight_layout()
+    ax2.plot(testloss_neuron1, marker='o', color='r', label=units[0]) # neuron 1
+    ax2.plot(testloss_neuron2, marker='s', color='g', label=units[1]) # neuron 2
+    ax2.plot(testloss_neuron3, marker='^', color='b', label=units[2]) # neuron 3
+    ax2.plot(testloss_neuron4, marker='p', color='c', label=units[3]) # neuron 4
+    ax2.plot(testloss_neuron5, marker='v', color='m', label=units[4]) # neuron 5
+    ax2.set_xlabel('Input Features')
+    ax2.set_ylabel('Test RMSE')
+    ax2.set_xticks(range(len(functions)))
+    ax2.set_xticklabels(functions)
+    ax2.legend(loc = "best")
+    ax2.grid(linestyle='--')
+    plt.suptitle(f"Neurons Selected by {title}")
+    plt.tight_layout()
+    plt.show()
     
