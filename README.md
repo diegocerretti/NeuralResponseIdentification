@@ -7,14 +7,6 @@
 *Can we develop mathematical models to predict individual neurons'
 spike counts in response to static grating inputs in the anteromedial visual area (VISam) of a mouse brain?*
 
-<p align="center">
-  <img src="pics/image.png" alt="alt text" width="100">
-  <img src="pics/image-1.png" alt="alt text" width="100">
-  <img src="pics/image-2.png" alt="alt text" width="100">
-  <br>
-  <em>Examples of static gratings</em>
-</p>
-
 More mathematically, given orientation ($x_1$), spatial frequency ($x_2$), and phase ($x_3$) of a visual input, can we find a function $f(x_1,x_2,x_3)$ to predict the spike count for each neuron?
 
 # TL;DR
@@ -24,12 +16,6 @@ We select VISam neurons responsive to static gratings, based on variance, range,
 Our results show that MLPs perform poorly, while linear models with quadratic features best capture the relationship between stimulus features and neural responses. Phase has low statistical relevance, but orientation and spatial frequency are good predictors. Responsive VISam neurons tend to exhibit quadratic responses to orientation and low spatial frequencies, aligning with previous findings.
 
 Our study highlights the potential of mathematical modeling to unravel the encoding principles of sensory neurons.
-
-<p align="center">
-    <img src="pics/neurons.png" alt="alt text" width="550">
-    <br>
-    <em>Example of a fitted model (with confidence intervals) on a selected neuron</em>
-<p>
 
 # Repo Structure
 
