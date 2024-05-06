@@ -8,9 +8,9 @@
 spike counts in response to static grating inputs in the anteromedial visual area (VISam) of a mouse brain?*
 
 <p align="center">
-  <img src="image.png" alt="alt text" width="100">
-  <img src="image-1.png" alt="alt text" width="100">
-  <img src="image-2.png" alt="alt text" width="100">
+  <img src="pics/image.png" alt="alt text" width="100">
+  <img src="pics/image-1.png" alt="alt text" width="100">
+  <img src="pics/image-2.png" alt="alt text" width="100">
   <br>
   <em>Examples of static gratings</em>
 </p>
@@ -26,7 +26,7 @@ Our results show that MLPs perform poorly, while linear models with quadratic fe
 Our study highlights the potential of mathematical modeling to unravel the encoding principles of sensory neurons.
 
 <p align="center">
-    <img src="neurons.png" alt="alt text" width="550">
+    <img src="pics/neurons.png" alt="alt text" width="550">
     <br>
     <em>Example of a fitted model (with confidence intervals) on a selected neuron</em>
 <p>
