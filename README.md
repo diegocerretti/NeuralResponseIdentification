@@ -23,3 +23,4 @@ Our study highlights the potential of mathematical modeling to unravel the encod
 - `utils` folder contains various auxiliary functions used in the regressions.
 - `data_analysis.ipynb` contains the exploratory part of the work.
 - `neurons_range_selection.ipynb` and `neurons_variance_selection.ipynb` contain the regression models for modulated neurons selected based on range and variance, respectively. 
+- `report.pdf` contains the report of the project.
